@@ -11,7 +11,7 @@ const NavBar = () => {
         <li><NavLink to="/" className={({ isActive }) =>
         isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
         }>Home</NavLink></li>
-        <li><NavLink className={({ isActive }) =>
+        <li><NavLink to="/rooms" className={({ isActive }) =>
         isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
         }>Rooms</NavLink></li>
         <li><NavLink className={({ isActive }) =>
@@ -64,7 +64,7 @@ const NavBar = () => {
         <div>
             <div>
                 <div>
-                <div className="navbar lg:px-20 flex md:flex-row flex-col overflow-hidden">
+                <div className="navbar lg:px-20 flex md:flex-row flex-col overflow-hidden py-4">
                 <div className="navbar-start md:w-[50%] w-[100%]">
                     <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
