@@ -4,6 +4,8 @@ import Home from "../Components/Home/Home/Home";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
+import Rooms from "../Components/Rooms/Rooms";
+import RoomDetails from "../Components/Rooms/RoomDetails";
 
     const router = createBrowserRouter(
         [
@@ -23,7 +25,17 @@ import Register from "../Components/Register/Register";
                         {
                             path:"/register",
                             element:<Register></Register>
-                        }
+                        },
+                        {
+                            path:'/rooms',
+                            element:<Rooms></Rooms>,
+                            loader: () => fetch('http://localhost:5000/rooms')
+                        },
+                        {
+                            path:'/rooms/:id',
+                            element:<RoomDetails></RoomDetails>,
+                            loader: ({params})=> fetch(`http://localhost:5000/rooms/${params.id}`)
+                        },
                     ]
             }
         ]

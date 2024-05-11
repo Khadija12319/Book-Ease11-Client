@@ -76,7 +76,8 @@ const NavBar = () => {
                        } 
                     </ul>
                     </div>
-                    <a className="md:text-5xl text-2xl flex items-center font-forum font-extrabold leading-[60px]"><RiHotelLine /><span>Book</span>Ease</a>
+                    {/* Radiant Horizon Retreat hotel */}
+                    <a className="md:text-5xl text-2xl flex items-center font-forum font-extrabold leading-[60px]"><RiHotelLine className="text-[#5c5c5c]"/><span className="text-[#5c5c5c]">RH Retreat</span></a>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">
