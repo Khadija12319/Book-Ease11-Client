@@ -6,7 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-export default function DateRangePicker({people}) {
+export default function DateRangePicker({people,availability}) {
   // State for selected start and end dates
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs());
@@ -54,7 +54,7 @@ export default function DateRangePicker({people}) {
   
 
   return (
-    <div className='bg-[#c19b76] ml-5 p-5'>
+    <div className='bg-[#c19b76] p-5'>
       <div className='flex gap-5'>
         <div className='border p-3'>
           <p className='text-black text-4xl font-semibold font-forum py-2 text-center'>CHECK-IN</p>
@@ -91,15 +91,18 @@ export default function DateRangePicker({people}) {
           </LocalizationProvider>
         </div>
       </div>
-        <div className='flex mt-4 gap-6'>
+      <div className='flex mt-4 gap-6'>
         <div className='flex-1 border p-4'>
           <p className='bg-[#81684e] flex flex-col items-center justify-center text-white font-bold py-7 text-2xl rounded-3xl p-4'><span>Number of days</span><span>{daysCount}</span></p>
         </div>
         <div className='flex-1 border p-4'>
           <p className='bg-[#81684e] flex flex-col items-center justify-center text-white font-bold py-7 text-2xl rounded-3xl p-4'><span>Guests</span><span>{people}</span></p>
         </div>
-        </div>
-        </div>
+      </div>
+      <div className='bg-[#c19b76] pt-5'>
+        <button className='bg-[#81684e] w-full py-4 text-3xl text-white font-forum font-extrabold rounded'>Book Now</button>
+      </div>
+    </div>
   );
 }
 

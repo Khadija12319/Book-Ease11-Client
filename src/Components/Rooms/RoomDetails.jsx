@@ -6,11 +6,16 @@ import icon2 from "../../assets/icons/icon-plan-grey.svg"
 import icon3 from "../../assets/icons/icon-bed-grey.svg"
 import icon4 from "../../assets/icons/icon-calendar-grey.svg"
 
+import image1 from "../../assets/images/lounge.jpeg"
+import image2 from "../../assets/images/restraunt.jpeg"
+import image3 from "../../assets/images/wellness.jpeg"
+
 import { FaSwimmingPool } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbSmokingNo } from "react-icons/tb";
 import { TbWashPress } from "react-icons/tb";
 import DataPicker from "./DateRangePicker";
+import { light } from "@mui/material/styles/createPalette";
 
 
 const RoomDetails = () => {
@@ -86,9 +91,38 @@ const RoomDetails = () => {
                             </div>
                         </div>
                     </div>
+                    <hr className="mb-8 border-[1px]"/>
+                    <div>
+                        <p className="text-2xl font-forum font-semibold mb-3">Package Including</p>
+                        {
+                            room['room-service'].map((service, index) => <li key={index} className="list-disc text-lg">{service}</li>)
+                        }
+                    </div>
                 </div>
-                <div>
-                    <DataPicker people={room.guests}></DataPicker>
+                <div className="ml-5 w-[40%]">
+                    <DataPicker people={room.guests} availability={room.availability}></DataPicker>
+                    <hr  className="mt-6"/>
+                    <h2 className="font-forum text-3xl pt-4">Around the Hotel</h2>
+                    <div className="grid grid-cols-2 gap-7 mt-6">
+                    <div className="relative">
+                        <img src={image1} alt="" />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <p className="font-forum font-bold text-center text-white text-2xl">Lounge Bar</p>
+                        </div>
+                    </div>
+                    <div className="relative">
+                            <img src={image2} alt="" />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                            <p className="text-2xl font-forum font-bold text-center text-white">Restaurants</p>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <img src={image3} alt="" />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                            <p className="text-2xl font-forum font-bold text-center text-white">Wellness</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
