@@ -9,19 +9,19 @@ AOS.init();
 const NavBar = () => {
     const navmid=<>
         <li><NavLink to="/" className={({ isActive }) =>
-        isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c] font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>Home</NavLink></li>
         <li><NavLink to="/rooms" className={({ isActive }) =>
-        isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>Rooms</NavLink></li>
-        <li><NavLink className={({ isActive }) =>
-        isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
+        <li><NavLink to='/booking' className={({ isActive }) =>
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>My Bookings</NavLink></li>
-        <li><NavLink className={({ isActive }) =>
-        isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
+        <li><NavLink to='/aboutus' className={({ isActive }) =>
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>About Us</NavLink></li>
-        <li><NavLink className={({ isActive }) =>
-        isActive ? 'font-bold font-sarabun' : 'bg-white font-normal dark:bg-transparent font-sarabun'
+        <li><NavLink to='/contactus' className={({ isActive }) =>
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>Contact Us</NavLink></li>
     </>;
 
@@ -50,7 +50,7 @@ const NavBar = () => {
         {
         isOpen && (<div className="absolute right-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" data-aos="fade-in" data-aos-duration="1000" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
         <div className="py-1 text-left" role="none">
-            <Link to="/user" className="text-gray-700 block px-4 py-2 text-sm" tabIndex="-1" role="menuitem"  id="menu-item-0">User Profile</Link>
+            <Link className="text-gray-700 block px-4 py-2 text-sm" tabIndex="-1" role="menuitem"  id="menu-item-0">User Profile</Link>
             <a href="#" className="text-gray-700 block px-4 py-2 text-sm" tabIndex="-1" role="menuitem"  id="menu-item-1">Add Account</a>
             <a href="#" className="text-gray-700 block px-4 py-2 text-sm" tabIndex="-1" role="menuitem"  id="menu-item-2">Account settings</a>
             <form>
@@ -97,8 +97,8 @@ const NavBar = () => {
             </div>
             ) : (
             <div className="navbar-end gap-3 space-x-4 font-work-sans flex">
-                <Link to='/login' className="btn text-lg font-medium font-sarabun">Login</Link>
-                <Link to='/register' className="btn text-lg font-medium font-sarabun">Register</Link>
+                <Link to='/login' className="btn text-base font-semibold font-sarabun">Login</Link>
+                <Link to='/register' className="btn text-base font-semibold font-sarabun">Register</Link>
             </div>
             )}
             </div>

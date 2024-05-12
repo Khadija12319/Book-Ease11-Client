@@ -63,23 +63,23 @@ const RoomDetails = () => {
                         <p className="px-4 text-lg font-normal font-forum">{room.description}</p>
                     </div>
                     <hr className="mb-10 border-[1px]"/>
-                    <div>
-                        <h1>Room Services</h1>
-                        <div className="grid grid-cols-3">
-                            <div>
-                                <FaSwimmingPool />
+                    <div className="mb-10">
+                        <h1 className="text-2xl font-forum font-semibold mb-3">Room Services</h1>
+                        <div className="grid grid-cols-3 gap-5">
+                            <div className="flex items-center gap-2">
+                                <FaSwimmingPool className="text-4xl text-[#5c5c5c]"/>
                                 <p>Swimming Pool</p>
                             </div>
-                            <div>
-                                <PiTelevisionSimpleDuotone />
+                            <div className="flex items-center gap-2">
+                                <PiTelevisionSimpleDuotone className="text-4xl text-[#5c5c5c]"/>
                                 <p>Television</p>
                             </div>
-                            <div>
-                                <TbSmokingNo />
+                            <div className="flex items-center gap-2">
+                                <TbSmokingNo className="text-4xl text-[#5c5c5c]"/>
                                 <p>No Smoking</p>
                             </div>
-                            <div>
-                                <TbWashPress />
+                            <div className="flex items-center gap-2">
+                                <TbWashPress className="text-4xl text-[#5c5c5c]"/>
                                 <p>Private Bathroom</p>
                             </div>
                         </div>

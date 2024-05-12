@@ -1,6 +1,8 @@
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import "../../App.css"
+import PropTypes from 'prop-types';
+
 function ThumbnailPlugin(mainRef) {
     return (slider) => {
       function removeActive() {
@@ -85,4 +87,7 @@ const ImageSlide = ({roomData}) => {
     );
 };
 
+ImageSlide.propTypes = {
+    roomData:PropTypes.object
+}
 export default ImageSlide;
