@@ -10,6 +10,7 @@ import { FaSwimmingPool } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbSmokingNo } from "react-icons/tb";
 import { TbWashPress } from "react-icons/tb";
+import DataPicker from "./DateRangePicker";
 
 
 const RoomDetails = () => {
@@ -34,11 +35,12 @@ const RoomDetails = () => {
             </div>
             </div>
             
-
+            <div className="container mx-auto">
+            <h1 className="text-4xl font-sarabun pb-2 pt-5 font-bold">{room['room-type']}</h1>
+            <p className="text-2xl font-forum font-medium text-[#5c5c5c] pb-5">{room['hotel-name']}</p>
+            </div>
             <div className="flex container mx-auto">
-                <div className="w-[70%]">
-                    <h1 className="text-4xl font-sarabun pb-2 pt-5 font-bold">{room['room-type']}</h1>
-                    <p className="text-2xl font-forum font-medium text-[#5c5c5c] pb-5">{room['hotel-name']}</p>
+                <div className="w-[60%] overflow-hidden">
                     <ImageSlide roomData={room}></ImageSlide>
                     <div className="grid grid-cols-4 py-10">
                         <div className="flex flex-col justify-between items-center space-y-2">
@@ -86,7 +88,7 @@ const RoomDetails = () => {
                     </div>
                 </div>
                 <div>
-
+                    <DataPicker people={room.guests}></DataPicker>
                 </div>
             </div>
         </div>

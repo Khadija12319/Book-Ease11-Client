@@ -18,9 +18,13 @@ const Rooms = () => {
                 .then(res => res.json())
                 .then(data => setRooms(data));
         } else if (priceFilter === '100to200') {
-            // Handle fetching rooms within price range 100 to 200
+            fetch("http://localhost:5000/gthundred")
+                .then(res => res.json())
+                .then(data => setRooms(data));
         } else if (priceFilter === '200orAbove') {
-            // Handle fetching rooms with price above 200
+            fetch("http://localhost:5000/twohundred")
+                .then(res => res.json())
+                .then(data => setRooms(data));
         }
     }, [priceFilter]);
     
