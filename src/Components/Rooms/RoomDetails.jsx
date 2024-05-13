@@ -100,7 +100,7 @@ const RoomDetails = () => {
                     </div>
                 </div>
                 <div className="ml-5 w-[40%]">
-                    <DataPicker people={room.guests} availability={room.availability}></DataPicker>
+                    <DataPicker people={room.guests} availability={room.availability} data={room}></DataPicker>
                     <hr  className="mt-6"/>
                     <h2 className="font-forum text-3xl pt-4">Around the Hotel</h2>
                     <div className="grid grid-cols-2 gap-7 mt-6">

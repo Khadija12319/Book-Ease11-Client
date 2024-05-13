@@ -50,7 +50,6 @@ const ImageSlide = ({roomData}) => {
         },
         [ThumbnailPlugin(instanceRef)]
       ) 
-      console.log(roomData);
     return (
         <>
         <div ref={sliderRef} className="keen-slider">
