@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -7,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/Context';
-
+import PropTypes from 'prop-types'; 
 
 export default function DateRangePicker({ people, availability,data }) {
   // State for selected start and end dates
@@ -16,6 +15,7 @@ export default function DateRangePicker({ people, availability,data }) {
   const [daysCount, setDaysCount] = useState(0);
   const [isRoomAvailable, setIsRoomAvailable] = useState(true); // Initially room is available
   const {user}=useContext(AuthContext);
+  console.log(isRoomAvailable);
 
   // Function to handle start date change
   const handleStartDateChange = (date) => {
@@ -56,9 +56,7 @@ export default function DateRangePicker({ people, availability,data }) {
 
   // Function to handle booking
   const handleBookNow = () => {
-    // Get the current timestamp
-    const currentTimestamp = dayjs().valueOf();
-  
+   
     // Get the timestamps for the start and end dates
     const startTimestamp = startDate.valueOf();
     const endTimestamp = endDate.valueOf();
@@ -70,7 +68,7 @@ export default function DateRangePicker({ people, availability,data }) {
     ) {
       // Room is available for booking
       setIsRoomAvailable(false);
-      const availability= "Unavailable";
+       const availability= "Unavailable";
        // Set room as unavailable
       const booking={
         sdate:startDate.$d,
@@ -179,6 +177,13 @@ export default function DateRangePicker({ people, availability,data }) {
     </div>
   );
 }
+
+DateRangePicker.propTypes = {
+  people:PropTypes.number,
+  availability:PropTypes.string,
+  data:PropTypes.object
+}
+
 
 
 

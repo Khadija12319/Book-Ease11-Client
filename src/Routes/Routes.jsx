@@ -6,8 +6,8 @@ import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import Rooms from "../Components/Rooms/Rooms";
 import RoomDetails from "../Components/Rooms/RoomDetails";
-import Booking from "../Components/Booking/Booking";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
+import Booking from "../Components/Booking.jsx/Booking";
 
     const router = createBrowserRouter(
         [
