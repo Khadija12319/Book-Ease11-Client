@@ -40,7 +40,8 @@ import Booking from "../Components/Booking.jsx/Booking";
                         },
                         {
                             path:'/booking',
-                            element:<PrivateRoute><Booking></Booking></PrivateRoute>
+                            element:<PrivateRoute><Booking></Booking></PrivateRoute>,
+                            loader: () => fetch('http://localhost:5000/rooms')
                         }
                     ]
             }

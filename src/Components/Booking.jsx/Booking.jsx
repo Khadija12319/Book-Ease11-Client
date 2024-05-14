@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
 //import { Link } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../Context/Context";
 import moment from "moment";
 import Swal from "sweetalert2";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
+import { useLoaderData } from "react-router-dom";
 
 const Booking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
-    const presentTime = moment().format('YYYY-MM-DD hh:mm a');
-    const url=`http://localhost:5000/bookings?email=${user.email}`
+  const dataroom=useLoaderData();
+    const presentTime = moment();
+    const url=`http://localhost:5000/booking?email=${user.email}`
     useEffect(() =>{
         fetch(url)
         .then(res => res.json())
@@ -65,7 +66,7 @@ const Booking = () => {
           edate: newEndDate
         };
       
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`http://localhost:5000/booking/${_id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -111,9 +112,101 @@ const Booking = () => {
           });
         });
       };
-        // const handleDelete = (id) => {
-        //     // Implement your delete logic here
-        //   };
+
+const handleDelete = (_id,sdate,bookid) => {
+  // Calculate the difference in days between the current date and the start date of the booking
+    const bookingStartDate = moment(sdate,'DD/MM/YYYY');
+    const currentDate = moment();
+    const daysDifference = bookingStartDate.diff(currentDate, 'days');
+  // Check if there's at least one day gap between cancel date and start date of booking
+  if (daysDifference < 2) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Cannot Cancel Booking',
+      text: 'Booking can only be canceled at least 1 day before the start date.',
+    });
+    return;
+  }
+
+  // Prompt the user for confirmation
+  Swal.fire({
+    title: 'Are you sure to cancel the booking?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B20',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, cancel it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Proceed with cancellation
+      fetch(`http://localhost:5000/booking/${_id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.deletedCount > 0) {
+          // Deletion successful
+          Swal.fire(
+            'Canceled!',
+            'The booking has been canceled.',
+            'success'
+          );
+          // Remove the deleted booking from state
+          const remaining = bookings.filter(booking => booking._id !== _id);
+          setBookings(remaining);
+
+          // Update the room's availability status to 'Available'
+          dataroom.map(room => {
+            if (room._id === bookid) {
+              const updatedRoomData = {
+                ...room,
+                availability: 'Available'
+              };
+
+              fetch(`http://localhost:5000/rooms/${room._id}`, {
+                method: 'PUT',
+                headers: {
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedRoomData)
+              })
+              .then(res => res.json())
+              .then(data => {
+                if (data.modifiedCount > 0) {
+                  // Update successful
+                  console.log("modified successfully");
+                }
+              })
+              .catch(error => {
+                console.error('Error updating room availability:', error);
+                Swal.fire(
+                  'Error!',
+                  'An error occurred while updating room availability.',
+                  'error'
+                );
+              });
+            }
+          });
+        } 
+      })
+      .catch(error => {
+        console.error('Error canceling the booking:', error);
+        Swal.fire(
+          'Error!',
+          'An error occurred while canceling the booking.',
+          'error'
+        );
+      });
+    }
+  });
+};
+
+      
+      
+      
+      
+      
 
   return (
     <div className="container mx-auto">
@@ -165,8 +258,8 @@ const Booking = () => {
                 >
                   Update Date
                 </button>
-                <button onClick={() => handleDelete(booking.id)}>
-                  <MdDelete className="text-4xl" />
+                <button onClick={() => handleDelete(booking._id,booking.sdate,booking.bookid)} className="bg-orange-600 px-3 py-2 text-white rounded-md">
+                  Cancle Booking
                 </button>
               </td>
             </tr>
