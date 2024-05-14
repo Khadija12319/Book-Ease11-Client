@@ -15,8 +15,6 @@ import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbSmokingNo } from "react-icons/tb";
 import { TbWashPress } from "react-icons/tb";
 import DataPicker from "./DateRangePicker";
-import { light } from "@mui/material/styles/createPalette";
-
 
 const RoomDetails = () => {
     const room = useLoaderData();

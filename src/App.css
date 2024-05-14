@@ -35,3 +35,10 @@ video{
   border: 2px solid black;
 }
 
+.newsletter{
+  background-image: url('../src/assets/images/newsletter.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}

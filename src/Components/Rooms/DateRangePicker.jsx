@@ -19,6 +19,7 @@ export default function DateRangePicker({ people, availability, data }) {
   const [showModal, setShowModal] = useState(false);
   const [confirmBooking, setConfirmBooking] = useState(false);
   const { user } = useContext(AuthContext);
+  console.log(confirmBooking);
 
   const handleStartDateChange = (date) => {
     const currentDate = dayjs();
@@ -53,13 +54,13 @@ export default function DateRangePicker({ people, availability, data }) {
   
     if (
       isRoomAvailable === 'Available' &&
-      daysCount > 0 &&
+      daysCount > 0 && daysCount < 4 &&
       (startTimestamp && endTimestamp)
     ) {
       setIsRoomAvailable('Unavailable');
       setShowModal(true);
     } else {
-      alert('Room is not available for the selected dates');
+      alert('check if you booked more than three days or any invalid date');
     }
   };
 

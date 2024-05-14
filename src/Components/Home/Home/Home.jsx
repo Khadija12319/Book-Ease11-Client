@@ -1,12 +1,12 @@
 import Banner from "../Banner/Banner";
-import Gellary from "../Gellary/Gellary";
 import Map from "../Map/Map";
+import NewsLetter from "../Newsletter/NewsLetter";
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Gellary></Gellary>
+            <NewsLetter></NewsLetter>
             <Map></Map>
         </div>
     );

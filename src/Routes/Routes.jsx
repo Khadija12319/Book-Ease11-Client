@@ -8,6 +8,7 @@ import Rooms from "../Components/Rooms/Rooms";
 import RoomDetails from "../Components/Rooms/RoomDetails";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
 import Booking from "../Components/Booking.jsx/Booking";
+import Gellary from "../Components/Home/Gellary/Gellary";
 
     const router = createBrowserRouter(
         [
@@ -42,6 +43,10 @@ import Booking from "../Components/Booking.jsx/Booking";
                             path:'/booking',
                             element:<PrivateRoute><Booking></Booking></PrivateRoute>,
                             loader: () => fetch('http://localhost:5000/rooms')
+                        },
+                        {
+                            path:'/gallery',
+                            element:<Gellary></Gellary>, 
                         }
                     ]
             }
