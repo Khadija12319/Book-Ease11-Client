@@ -32,17 +32,17 @@ import Gellary from "../Components/Home/Gellary/Gellary";
                         {
                             path:'/rooms',
                             element:<Rooms></Rooms>,
-                            loader: () => fetch('http://localhost:5000/rooms')
+                            loader: () => fetch('https://bookeaseclient.vercel.app/rooms')
                         },
                         {
                             path:'/rooms/:id',
                             element:<RoomDetails></RoomDetails>,
-                            loader: ({params})=> fetch(`http://localhost:5000/rooms/${params.id}`)
+                            loader: ({params})=> fetch(`https://bookeaseclient.vercel.app/rooms/${params.id}`)
                         },
                         {
                             path:'/booking',
                             element:<PrivateRoute><Booking></Booking></PrivateRoute>,
-                            loader: () => fetch('http://localhost:5000/rooms')
+                            loader: () => fetch('https://bookeaseclient.vercel.app/rooms')
                         },
                         {
                             path:'/gallery',

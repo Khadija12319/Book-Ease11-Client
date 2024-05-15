@@ -26,7 +26,7 @@ const RoomDetails = () => {
     const [isbooked, setIsBooked] = useState([]);
  
     useEffect(() =>{
-        fetch('http://localhost:5000/booking')
+        fetch('https://bookeaseclient.vercel.app/booking')
         .then(res => res.json())
         .then(data => setIsBooked(data))
     },[])
@@ -56,7 +56,7 @@ const RoomDetails = () => {
             rating:[rating]
           };
   
-              fetch(`http://localhost:5000/rooms/${room._id}`, {
+              fetch(`https://bookeaseclient.vercel.app/rooms/${room._id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json'

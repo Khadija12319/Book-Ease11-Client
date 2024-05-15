@@ -95,7 +95,7 @@ export default function DateRangePicker({ people, availability, data }) {
       availability: 'Unavailable'
     };
 
-    fetch(`http://localhost:5000/rooms/${data._id}`, {
+    fetch(`https://bookeaseclient.vercel.app/rooms/${data._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -109,7 +109,7 @@ export default function DateRangePicker({ people, availability, data }) {
         }
       });
 
-    fetch('http://localhost:5000/booking', {
+    fetch('https://bookeaseclient.vercel.app/booking', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

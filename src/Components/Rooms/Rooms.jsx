@@ -18,15 +18,15 @@ const Rooms = () => {
         if (priceFilter === 'all') {
             setRooms(room);
         } else if (priceFilter === 'lessThan100') {
-            fetch("http://localhost:5000/lthundred")
+            fetch("https://bookeaseclient.vercel.app/lthundred")
                 .then(res => res.json())
                 .then(data => setRooms(data));
         } else if (priceFilter === '100to200') {
-            fetch("http://localhost:5000/gthundred")
+            fetch("https://bookeaseclient.vercel.app/gthundred")
                 .then(res => res.json())
                 .then(data => setRooms(data));
         } else if (priceFilter === '200orAbove') {
-            fetch("http://localhost:5000/twohundred")
+            fetch("https://bookeaseclient.vercel.app/twohundred")
                 .then(res => res.json())
                 .then(data => setRooms(data));
         }

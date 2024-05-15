@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, GithubAuthProvider,updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, GithubAuthProvider} from "firebase/auth";
 
 import PropTypes from 'prop-types';
 import app from "../../../firebase.config";
+import axios from "axios";
 const auth = getAuth(app);
 
 export const AuthContext = createContext([]);
@@ -31,6 +32,18 @@ const Context = ({children}) => {
        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            if(currentUser){
+                const userEmail=currentUser.email || user?.email;
+        const loggedUser = {email:userEmail};
+                axios.post('https://bookeaseclient.vercel.app/jwt',loggedUser,{withCredentials:true})
+                .then(res => console.log(res.data))
+            }
+            else{
+                const userEmail=currentUser.email || user?.email;
+        const loggedUser = {email:userEmail};
+                axios.post('https://bookeaseclient.vercel.app/logout',loggedUser,{withCredentials:true})
+                .then(res => console.log(res.data))
+            }
         })
         return () =>{
             unSubscribe();
@@ -46,16 +59,9 @@ const Context = ({children}) => {
         setLoading(true);
         return signInWithPopup(auth, gitProvider);
     }
-    const updateUserProfile = (displayName, photoURL) => {
-        if (user) {
-            updateProfile(user,{displayName:displayName,
-                photoURL:photoURL})
-                .then(setUser({ ...user, displayName, photoURL }))
-                .catch()
-        }
-      };
+   
 
-    const authKey={user,loading,createUser,logOut,logInUser,logInGoogle, logInGit,updateUserProfile,auth};
+    const authKey={user,loading,createUser,logOut,logInUser,logInGoogle, logInGit,auth};
     return (
         <AuthContext.Provider value={authKey}>
             {children}

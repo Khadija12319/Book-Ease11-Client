@@ -2,7 +2,7 @@ import videoBG from "../../../assets/video/banner-back.mp4"
 import "../../../App.css"
 const Banner = () => {
     return (
-        <div className="container mx-auto relative mb-24">
+        <div className="container mx-auto relative mb-24 z-0">
     <div className="main relative rounded-3xl">
         <video src={videoBG} autoPlay loop muted className="w-full object-cover z-0 rounded-3xl"></video>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25 carousel z-10 rounded-3xl">

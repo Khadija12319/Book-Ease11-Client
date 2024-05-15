@@ -43,7 +43,8 @@ const Booking = () => {
           rating:[rating]
         };
 
-      fetch(`http://localhost:5000/booking/${ratingid}`, {
+      fetch(`https://bookeaseclient.vercel.app/booking/${ratingid}`, {
+        credentials:'include',
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ const Booking = () => {
               ...room,
               rating: [rating]
             };
-            fetch(`http://localhost:5000/rooms/${room._id}`, {
+            fetch(`https://bookeaseclient.vercel.app/rooms/${room._id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json'
@@ -85,9 +86,9 @@ const Booking = () => {
     const handleCloseReviewModal = () => {
       setShowModal(false);
     };
-    const url=`http://localhost:5000/booking/${user.email}`
+    const url=`https://bookeaseclient.vercel.app/booking/${user.email}`
     useEffect(() =>{
-        fetch(url)
+        fetch(url,{credentials:'include'})
         .then(res => res.json())
         .then(data => setBookings(data))
     },[])
@@ -119,8 +120,9 @@ const Booking = () => {
           edate: newEndDate
         };
       
-        fetch(`http://localhost:5000/booking/${_id}`, {
+        fetch(`https://bookeaseclient.vercel.app/booking/${_id}`, {
           method: 'PUT',
+          credentials:'include',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -196,7 +198,8 @@ const handleDelete = (_id,sdate,bookid) => {
   }).then((result) => {
     if (result.isConfirmed) {
       // Proceed with cancellation
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://bookeaseclient.vercel.app/booking/${_id}`, {
+        credentials:'include',
         method: 'DELETE'
       })
       .then(res => res.json())
@@ -220,7 +223,7 @@ const handleDelete = (_id,sdate,bookid) => {
                 availability: 'Available'
               };
 
-              fetch(`http://localhost:5000/rooms/${room._id}`, {
+              fetch(`https://bookeaseclient.vercel.app/rooms/${room._id}`, {
                 method: 'PUT',
                 headers: {
                   'content-type': 'application/json'

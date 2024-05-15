@@ -92,9 +92,9 @@ const NavBar = () => {
                 </div>
 
 
-            <div className="navbar-end text-right">
+            <div className="navbar-end text-right z-10">
             {user ? (
-            <div className="navbar-end gap-3 pr-5">
+            <div className="navbar-end gap-3 pr-5 z-10">
                 {
                     navEnd}
             </div>

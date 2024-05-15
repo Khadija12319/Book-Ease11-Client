@@ -1,4 +1,5 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
+import PropTypes from 'prop-types';
 const RatingStars = ({ rate }) => {
     const filledStars = Math.floor(rate); // Number of filled stars
     const hasHalfStar = rate - filledStars >= 0.5; // Check if there's a half-filled star
@@ -16,4 +17,8 @@ const RatingStars = ({ rate }) => {
     return <div className='flex justify-center gap-3 my-5 text-4xl'>{starsArray}</div>;
 
 }
+RatingStars.propTypes = {
+    rate:PropTypes.number
+}
+
 export default RatingStars;

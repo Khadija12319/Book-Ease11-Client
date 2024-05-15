@@ -1,5 +1,5 @@
 import moment from "moment";
-
+import PropTypes from 'prop-types';
 const ReviewModal = ({ user, roomId, onClose, onSubmit }) => {
     const presentTime = moment().format('DD/MM/YYYY  hh:mm a');
     
@@ -78,6 +78,13 @@ const ReviewModal = ({ user, roomId, onClose, onSubmit }) => {
       </div>
     );
   };
+
+  ReviewModal.propTypes = {
+    user:PropTypes.object,
+    roomId:PropTypes.string,
+    onClose:PropTypes.func,
+    onSubmit:PropTypes.func
+}
   
   export default ReviewModal;
   
