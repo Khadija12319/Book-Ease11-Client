@@ -93,35 +93,33 @@ const Footer = () => {
                 <path
                   d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
               </svg>
-              TW Elements
+              RH Retreat
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
+              Here you can book hotel rooms and can get best dealts within your budget. Explore the website and see the facilities. Do everything easily with this website.
             </p>
           </div>
           {/* <!-- Products section --> */}
           <div className="">
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Products
+              Rooms
             </h6>
             <p className="mb-4">
               <a className="text-neutral-600 dark:text-neutral-200"
-              >Angular</a>
+              >Single Room</a>
             </p>
             <p className="mb-4">
               <a className="text-neutral-600 dark:text-neutral-200"
-              >React</a>
+              >Couple Room</a>
             </p>
             <p className="mb-4">
               <a className="text-neutral-600 dark:text-neutral-200"
-              >Vue</a>
+              >Suites</a>
             </p>
             <p>
               <a className="text-neutral-600 dark:text-neutral-200"
-              >Laravel</a>
+              >Double Rooms</a>
             </p>
           </div>
           {/* <!-- Useful links section --> */}
@@ -164,7 +162,8 @@ const Footer = () => {
                 <path
                   d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
               </svg>
-              New York, NY 10012, US
+              House 123, Road 45, Gulshan Avenue
+Dhaka, Bangladesh
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <svg
@@ -177,7 +176,7 @@ const Footer = () => {
                 <path
                   d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
               </svg>
-              info@example.com
+              info@hotel.com
             </p>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <svg
@@ -212,7 +211,7 @@ const Footer = () => {
       {/* <!--Copyright section--> */}
     </footer> 
     <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
-        <span className="text-white">© {moment().format('yyyy')} Copyright:</span>
+        <span className="text-white">© {moment().format('yyyy')} Copyright : </span>
         <Link
           className="font-semibold text-neutral-600 dark:text-neutral-400"
           to="/"
