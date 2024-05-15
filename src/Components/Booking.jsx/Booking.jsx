@@ -18,16 +18,66 @@ const Booking = () => {
   const dataroom=useLoaderData();
     const [showModal, setShowModal] = useState(false);
     const [selectedRoomId, setSelectedRoomId] = useState(null);
+    console.log(user);
 
     // Function to handle form submission
     const handleSubmitReview = (e) => {
       e.preventDefault();
+      const form =e.target;
+      const r=form.rating.value;
+      const ra=parseInt(r);
+      const name=form.username.value;
+      const comment=form.message.value;
+      const ratingid =form.id.value;
+      const time=form.time.value;
+
+      const rating={
+        rate:ra,
+        username:name,
+        comment:comment,
+        time:time
+      }
+
+        const updatedData = {
+          ...selectedRoomId,
+          rating:[rating]
+        };
+
+      fetch(`http://localhost:5000/booking/${ratingid}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedData)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data));
+
+        dataroom.map((room) => {
+          if (room._id === selectedRoomId.bookid) { 
+            const rate = {
+              ...room,
+              rating: [rating]
+            };
+            fetch(`http://localhost:5000/rooms/${room._id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(rate)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data));
+          }
+        });
+      form.reset();
+      setShowModal(false);
       // Handle form submission logic here
     };
   
     // Function to handle opening the modal
-    const handleOpenReviewModal = (roomId) => {
-      setSelectedRoomId(roomId);
+    const handleOpenReviewModal = (booking) => {
+      setSelectedRoomId(booking);
       setShowModal(true);
     };
   
@@ -35,12 +85,12 @@ const Booking = () => {
     const handleCloseReviewModal = () => {
       setShowModal(false);
     };
-    const url=`http://localhost:5000/booking?email=${user.email}`
+    const url=`http://localhost:5000/booking/${user.email}`
     useEffect(() =>{
         fetch(url)
         .then(res => res.json())
         .then(data => setBookings(data))
-    },[url])
+    },[])
 
     const handleUpdateDate = (booking) => {
         setSelectedBooking(booking);
@@ -255,7 +305,7 @@ const handleDelete = (_id,sdate,bookid) => {
                 {booking.edate}
               </td>
               <td className="text-center py-4 text-sm font-medium text-gray-700 font-montserrat">
-                <button onClick={() => handleOpenReviewModal(booking._id)}
+                <button onClick={() => handleOpenReviewModal(booking)}
                 className="bg-orange-600 px-3 py-2 text-white rounded-md">Submit review</button>
               </td>
               <td className="text-center py-4 text-sm font-medium text-gray-700 font-montserrat space-x-5 items-center flex justify-center">

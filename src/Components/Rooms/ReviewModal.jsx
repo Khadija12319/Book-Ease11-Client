@@ -2,15 +2,7 @@ import moment from "moment";
 
 const ReviewModal = ({ user, roomId, onClose, onSubmit }) => {
     const presentTime = moment().format('DD/MM/YYYY  hh:mm a');
-    const handleUpdateSpot= e =>{
-        e.preventDefault();
-        //const form = e.target;
-        // const countryname= form.countryname.value;
-        // const location=form.location.value;
-        // const season=form.season.value;
-        // const spotname=form.spotname.value;
-        // const description=form.description.value;
-    }
+    
     return (
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -25,7 +17,7 @@ const ReviewModal = ({ user, roomId, onClose, onSubmit }) => {
                     <div className="flex md:flex-row flex-col gap-6 w-full">
                         <div className="flex flex-col gap-4 w-full">
                             <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Give Stars</label>
-                            <select className="p-3 rounded-md border" name="rating" id="" >
+                            <select className="p-3 rounded-md border" name="rating" id="" required >
                                 <option>--Please select a rating--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -49,12 +41,12 @@ const ReviewModal = ({ user, roomId, onClose, onSubmit }) => {
 
                         <div className="flex flex-col gap-4">
                         <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Write Your Comment</label>
-                        <textarea placeholder="write your message" className="border rounded-md p-3" rows={5}/>
+                        <textarea placeholder="write your message" className="border rounded-md p-3" name="message" rows={5} required/>
                         </div>
 
                         <div className="flex flex-col gap-4">
                         <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Room Id</label>
-                        <input className="border rounded-md p-3" value={roomId} readOnly name="id"/>
+                        <input className="border rounded-md p-3" value={roomId._id} readOnly name="id"/>
                         </div>
 
                         <div>

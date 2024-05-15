@@ -30,6 +30,7 @@ const Room = ({room}) => {
                 <CiBadgeDollar className="text-3xl"/>
                 <p className=" text-lg">{room.price}$ Per Night</p>
             </div>
+            <p className="text-2xl pt-4"><span className="font-bold">Reviews :</span> {room.rating.length}</p>
             </div>
         </div>
         </div>

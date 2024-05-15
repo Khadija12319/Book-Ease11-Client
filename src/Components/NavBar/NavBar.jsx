@@ -17,6 +17,9 @@ const NavBar = () => {
         <li><NavLink to='/booking' className={({ isActive }) =>
         isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>My Bookings</NavLink></li>
+        <li><NavLink to='/gallery' className={({ isActive }) =>
+        isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
+        }>Gallery</NavLink></li>
         <li><NavLink to='/aboutus' className={({ isActive }) =>
         isActive ? 'font-bold border-b-[2px] border-[#5c5c5c]  font-sarabun text-[#5c5c5c]' : 'bg-white text-[#5c5c5c] font-normal dark:bg-transparent font-sarabun'
         }>About Us</NavLink></li>

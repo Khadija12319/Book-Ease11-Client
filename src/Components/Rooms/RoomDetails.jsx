@@ -5,19 +5,71 @@ import icon1 from "../../assets/icons/icon-user-grey.svg"
 import icon2 from "../../assets/icons/icon-plan-grey.svg"
 import icon3 from "../../assets/icons/icon-bed-grey.svg"
 import icon4 from "../../assets/icons/icon-calendar-grey.svg"
-
 import image1 from "../../assets/images/lounge.jpeg"
 import image2 from "../../assets/images/restraunt.jpeg"
 import image3 from "../../assets/images/wellness.jpeg"
-
 import { FaSwimmingPool } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbSmokingNo } from "react-icons/tb";
 import { TbWashPress } from "react-icons/tb";
 import DataPicker from "./DateRangePicker";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/Context";
+import Testimonial from "../Home/Testimonial/Testimonial";
 
 const RoomDetails = () => {
     const room = useLoaderData();
+    const presentTime = moment().format('DD/MM/YYYY  hh:mm a');
+    const {user} =useContext(AuthContext);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isbooked, setIsBooked] = useState([]);
+ 
+    useEffect(() =>{
+        fetch('http://localhost:5000/booking')
+        .then(res => res.json())
+        .then(data => setIsBooked(data))
+    },[])
+
+    useEffect(() => {
+        setIsLoggedIn(isbooked.some(book => book.email === user.email));
+    }, []);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form =e.target;
+        const r=form.rating.value;
+        const ra=parseInt(r);
+        const name=form.username.value;
+        const comment=form.message.value;
+        const time=form.time.value;
+  
+        const rating={
+          rate:ra,
+          username:name,
+          comment:comment,
+          time:time
+        }
+  
+          const updatedData = {
+            ...room,
+            rating:[rating]
+          };
+  
+              fetch(`http://localhost:5000/rooms/${room._id}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+              })
+              .then(res => res.json())
+              .then(data => console.log(data));
+              form.reset();
+            }
+
+            console.log(isLoggedIn);
+        
     return (
         <div>
             <div>
@@ -99,7 +151,73 @@ const RoomDetails = () => {
                 </div>
                 <div className="ml-5 w-[40%]">
                     <DataPicker people={room.guests} availability={room.availability} data={room}></DataPicker>
-                    <hr  className="mt-6"/>
+                    {(user && isLoggedIn) ? (
+                    <div>
+                        {room.availability === 'Unavailable' ? (
+                            <div>
+                                <form className="space-y-6 p-6 mt-10" onSubmit={handleSubmit}>
+                    <div className="flex md:flex-row flex-col gap-6 w-full">
+                        <div className="flex flex-col gap-4 w-full">
+                            <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Give Stars</label>
+                            <select className="p-3 rounded-md border" name="rating" id="" required>
+                                <option>--Please select a rating--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div className="flex flex-col gap-4 w-full">
+                            <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">User Name</label>
+                            <input
+                              className="p-3 placeholder:text-[#1B1A1A80] placeholder:text-base placeholder:font-normal placeholder:leading-7 rounded-md border"
+                              type="text"
+                              name="username"
+                              id=""
+                              value={user?.displayName}
+                              readOnly 
+                            />
+                        </div>
+                    </div>
+
+                        <div className="flex flex-col gap-4">
+                        <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Write Your Comment</label>
+                        <textarea placeholder="write your message" className="border rounded-md p-3" name="message" rows={5} required/>
+                        </div>
+
+                        <div className="flex flex-col gap-4">
+                        <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Room Id</label>
+                        <input className="border rounded-md p-3" value={room._id} readOnly name="id"/>
+                        </div>
+
+                        <div>
+                        <div className="flex flex-col gap-4 w-full">
+                          <label className="text-[#1B1A1A80] font-sarabun font-semibold leading-8 text-xl">Time</label>
+                          <input 
+                            className="border p-3 placeholder:text-[#1B1A1A80] placeholder:text-base placeholder:font-normal placeholder:leading-7 rounded-md" 
+                            type="text" 
+                            name="time" 
+                            value={presentTime}  
+                            readOnly
+                          />
+                        </div>
+                        </div>
+
+                    <button className="w-full border-[2px] border-[#331A15] bg-[#D2B48C] py-3 text-[#331A15] font-forum text-2xl font-normal rounded-lg">Add Review</button>
+                </form>
+                            </div>
+                        ) : (
+                            <p className="text-2xl py-3">This room is currently available. You cannot leave a review.</p>
+                        )}
+                    </div>
+                ) : (
+                    <p className="text-2xl py-3">Please log in and book now to leave a review.</p>
+                )}
+
+
+
+                    <hr className="mt-6"/>
                     <h2 className="font-forum text-3xl pt-4">Around the Hotel</h2>
                     <div className="grid grid-cols-2 gap-7 mt-6">
                     <div className="relative">
@@ -122,6 +240,9 @@ const RoomDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="container mx-auto">
+                <Testimonial></Testimonial>
             </div>
         </div>
     );
