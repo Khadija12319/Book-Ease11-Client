@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -10,16 +10,24 @@ import { AuthContext } from '../Context/Context';
 import PropTypes from 'prop-types'; 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import {  useNavigate } from 'react-router-dom';
+
 
 export default function DateRangePicker({ people, availability, data }) {
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs());
   const [daysCount, setDaysCount] = useState(0);
   const [isRoomAvailable, setIsRoomAvailable] = useState(availability);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [confirmBooking, setConfirmBooking] = useState(false);
-  const { user } = useContext(AuthContext);
-  console.log(confirmBooking);
+  const { user } =useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is logged in
+    setIsLoggedIn(user !== null);
+  }, [user]);
 
   const handleStartDateChange = (date) => {
     const currentDate = dayjs();
@@ -49,7 +57,10 @@ export default function DateRangePicker({ people, availability, data }) {
   };
 
   const handleBookNow = () => {
-    const startTimestamp = startDate.format('DD/MM/YYYY');
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+      const startTimestamp = startDate.format('DD/MM/YYYY');
     const endTimestamp = endDate.format('DD/MM/YYYY');
   
     if (
@@ -62,6 +73,7 @@ export default function DateRangePicker({ people, availability, data }) {
     } else {
       alert('check if you booked more than three days or any invalid date');
     }
+
   };
 
   const handleConfirmBooking = () => {
