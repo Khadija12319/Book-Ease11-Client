@@ -6,7 +6,7 @@
 [Live server url](https://bookeaseclient-jpubkqr7e-khadijatul-kobras-projects.vercel.app/)
 
 
-### Category : assignment_category_0004
+### Book Ease
 
 Welcome to RH Retreate a hotel management system.Where user can get their best deals and book a room when they need by clickigg book now option.
 
